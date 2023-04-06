@@ -12,7 +12,7 @@ interface navItem {
 })
 export class HeaderComponent {
   items: navItem[] = [
-    {title: 'Receipes', link: '#'},
+    {title: 'Recipes', link: '#'},
     {title: 'Shoping List', link: '#'},
   ];
 
