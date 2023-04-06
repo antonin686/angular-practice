@@ -11,6 +11,15 @@ export class PracDirComponent {
 
   showDetailsHandler() {
     this.showDetails = !this.showDetails;
-    this.logs.push(`Details ${this.showDetails ? 'Shown' : 'Hidden'} at ${new Date().getTime()}`);
+    this.logs.push(
+      `Details ${
+        this.showDetails ? 'Shown' : 'Hidden'
+      } at ${new Date().getTime()}`
+    );
+  }
+
+  getBgColor(idx: number) {
+    if (idx > 4) return 'rgb(59 130 246)';
+    else return '#fff';
   }
 }
