@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - project-01/eshop
+  workflow_dispatch:
 jobs:
   build:
 
