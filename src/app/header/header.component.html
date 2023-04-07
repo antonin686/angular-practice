@@ -1,0 +1,21 @@
+<header>
+  <nav>
+    <mat-toolbar color="primary">
+      <span>eShop</span>
+      <ul class="flex mx-6">
+        <li *ngFor="let item of items">
+          <a href="{{ item.link }}" mat-button>{{ item.title }}</a>
+        </li>
+      </ul>
+      <span class="spacer"></span>
+      <button mat-button [matMenuTriggerFor]="menu">
+        Manage <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a *ngFor="let menu of menus" mat-menu-item href="{{ menu.link }}">{{
+          menu.title
+        }}</a>
+      </mat-menu>
+    </mat-toolbar>
+  </nav>
+</header>
