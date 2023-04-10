@@ -1,0 +1,8 @@
+<div *ngIf="user">
+    <div class="flex flex-col">
+        <div>{{ user.name.title }} {{ user.name.first }} {{ user.name.last }}</div>
+    </div>
+</div>
+<div *ngIf="!user">
+    Fetching user data...
+</div>
