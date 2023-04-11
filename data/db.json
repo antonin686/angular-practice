@@ -1,0 +1,16 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "A Test Recipe",
+      "description": "This is simply a test recipe",
+      "image": "https://picsum.photos/id/1/200/300"
+    },
+    {
+      "name": "dsa",
+      "description": "asd",
+      "image": "https://picsum.photos/id/1/200/300",
+      "id": 2
+    }
+  ]
+}
