@@ -4,7 +4,7 @@
     </div>
     <hr>
     <ul class="flex flex-col gap-5">
-        <li *ngFor="let recipe of recipes">
+        <li *ngFor="let recipe of (recipes | async)">
             <app-recipe-item [recipe]="recipe"/>
         </li>
     </ul>

@@ -3,6 +3,7 @@ import { Recipe } from '../recipe.modal';
 import { MatDialog } from '@angular/material/dialog';
 import { AddRecipeDialogComponent } from './add-recipe-dialog/add-recipe-dialog.component';
 import { RecipeService } from '../recipe.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,7 +11,7 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  @Input() recipes: Recipe[] = [];
+  @Input() recipes: Observable<Recipe[]>;
   constructor(private dialog: MatDialog) {}
   ngOnInit(): void {}
 
