@@ -4,35 +4,18 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 class RecipeService {
-  private recipes: any = [];
-
   constructor(private http: HttpClient) {}
 
-  getRecipe() {
-    return this.recipes;
-  }
-
-  // fetchRecipe() {
-  //   this.http.get('http://localhost:3000/recipes').subscribe((res: any) => {
-  //     res.forEach((recipe) => {
-  //       this.addRecipeToState(recipe);
-  //     });
-  //   });
-  // }
-
-  fetchRecipe() {
+  fetch() {
     return this.http.get('http://localhost:3000/recipes');
   }
 
-  addRecipeToState(recipe: Recipe) {
-    this.recipes.push(recipe);
+  add(recipe: Recipe){
+    return this.http.post('http://localhost:3000/recipes', recipe);
   }
 
-  addRecipe(recipe: Recipe){
-    this.http.post('http://localhost:3000/recipes', recipe).subscribe((res: any) => {
-      console.log(res);
-      this.addRecipeToState(recipe);
-    })
+  delete(recipe: Recipe){
+    return this.http.delete(`http://localhost:3000/recipes/${recipe.id}`);
   }
 }
 

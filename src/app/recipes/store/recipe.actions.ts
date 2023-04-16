@@ -1,9 +1,13 @@
-import { Action } from '@ngrx/store';
+import { Action as Ac } from '@ngrx/store';
 import { Recipe } from '../recipe.modal';
 
-export const ADD_RECIPE = "ADD_RECIPE";
+export const TYPES = {
+    ADD_RECIPE: "ADD_RECIPE",
+    SET_RECIPE: "SET_RECIPE",
+    DELETE_RECIPE: "DELETE_RECIPE",
+};
 
-export class AddRecipe implements Action {
-    readonly type: string = ADD_RECIPE;
+export default class Action implements Ac {
+    type: string;
     payload: Recipe;
 }

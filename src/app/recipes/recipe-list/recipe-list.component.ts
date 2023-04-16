@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  @Input() recipes: Observable<Recipe[]>;
+  @Input() recipes: Array<Recipe>;
   constructor(private dialog: MatDialog) {}
   ngOnInit(): void {}
 

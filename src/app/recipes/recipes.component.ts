@@ -3,6 +3,7 @@ import { Recipe } from './recipe.modal';
 import { RecipeService } from './recipe.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { TYPES } from './store/recipe.actions';
 
 @Component({
   selector: 'app-recipes',
@@ -18,10 +19,15 @@ export class RecipesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.recipes = this.store.select('recipeStore');
-
-    this.recipeService.fetchRecipe().subscribe((res) => {
+    this.recipeService.fetch().subscribe((res: any) => {
+      if (res.length > 0) {
+        this.store.dispatch({
+          type: TYPES.SET_RECIPE,
+          payload: res,
+        });
+      }
     });
-    this.recipes = this.recipeService.getRecipe();
+
+    this.recipes = this.store.select('recipeStore');
   }
 }

@@ -1,10 +1,12 @@
 <div class="flex flex-col gap-5">
     <div>
-        <button mat-raised-button color="primary" (click)="newRecipeHandler()">New Recipe</button>
+        <button mat-raised-button color="primary" (click)="newRecipeHandler()">
+            New Recipe
+        </button>
     </div>
     <hr>
     <ul class="flex flex-col gap-5">
-        <li *ngFor="let recipe of (recipes | async)">
+        <li *ngFor="let recipe of recipes">
             <app-recipe-item [recipe]="recipe"/>
         </li>
     </ul>

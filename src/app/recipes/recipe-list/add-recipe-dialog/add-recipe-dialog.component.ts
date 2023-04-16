@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Recipe } from '../../recipe.modal';
+import { Store } from '@ngrx/store';
+import { TYPES } from '../../store/recipe.actions';
 
 @Component({
   selector: 'app-add-recipe-dialog',
@@ -15,44 +17,48 @@ export class AddRecipeDialogComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store<{ recipeStore: Recipe[] }>
   ) {}
 
   ngOnInit(): void {
     this.addRecipeForm = new FormGroup({
-      name: new FormControl(null, Validators.required, this.forbiddenNames.bind(this)),
+      name: new FormControl(
+        null,
+        Validators.required,
+        this.forbiddenNames.bind(this)
+      ),
       description: new FormControl(null, Validators.required),
       image: new FormControl(null, Validators.required),
     });
 
-    this.addRecipeForm.statusChanges.subscribe((value) => console.log(value))
+    this.addRecipeForm.statusChanges.subscribe((value) => console.log(value));
   }
 
   onSubmit() {
     if (this.addRecipeForm.valid) {
       const recipe: Recipe = this.addRecipeForm.value;
 
-      this.recipeService.addRecipe(recipe);
-      this.dialog.closeAll()
+      this.recipeService.add(recipe).subscribe((res: any) => {
+        this.store.dispatch({ type: TYPES.ADD_RECIPE, payload: recipe });
+        this.dialog.closeAll();
+      });
     }
   }
 
   forbiddenNames(control: FormControl): Promise<any> | Observable<any> {
     const promise = new Promise<any>((resolve, reject) => {
-      const recipes = this.recipeService.getRecipe();
+      const recipes = [];
       let found: boolean = false;
       recipes.forEach((recipe) => {
         if (recipe.name == control.value) {
           found = true;
         }
       });
-      if(found) resolve({'nameIsForbidden': true})
+      if (found) resolve({ nameIsForbidden: true });
       else resolve(null);
     });
 
     return promise;
-  }
-  newRecipeHandler() {
-    // this.recipeService.addRecipe(new Recipe(this.name, this.desc, this.image));
   }
 }

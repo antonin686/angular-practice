@@ -1,15 +1,17 @@
-import { Recipe } from "../recipe.modal";
-import { ADD_RECIPE, AddRecipe } from "./recipe.actions";
+import { Recipe } from '../recipe.modal';
+import RecipeAction, { TYPES } from './recipe.actions';
 
-const initialState = [
-    new Recipe("Test 2", 'Simple Test', 'https://picsum.photos/id/1/200/300')
-]
+const initialState = [];
 
-export function recipeReducer(state: any = initialState, action: AddRecipe) {
-    switch (action.type) {
-        case ADD_RECIPE:
-            return [...state, action.payload];
-        default:
-            return state;
-    }
+export function recipeReducer(state: any = initialState, action: RecipeAction) {
+  switch (action.type) {
+    case TYPES.SET_RECIPE:
+      return action.payload;
+    case TYPES.ADD_RECIPE:
+      return [...state, action.payload];
+    case TYPES.DELETE_RECIPE:
+      return state.filter((el: Recipe) => el.id != action.payload.id);
+    default:
+      return state;
+  }
 }
