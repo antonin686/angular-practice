@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule } from '@angular/forms'; 
+import { StoreModule } from '@ngrx/store'; 
 
 import { RecipeService } from './recipes/recipe.service';
 
@@ -27,6 +28,7 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { AddRecipeDialogComponent } from './recipes/recipe-list/add-recipe-dialog/add-recipe-dialog.component';
+import { recipeReducer } from './recipes/store/recipe.reducer';
 
 
 const AngularMaterial = [
@@ -60,6 +62,7 @@ const AngularMaterial = [
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({recipeStore: recipeReducer}),
     AngularMaterial,
   ],
   providers: [RecipeService],
